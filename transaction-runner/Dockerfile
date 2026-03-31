@@ -5,5 +5,6 @@ RUN npm install
 RUN npx playwright install chromium --with-deps
 COPY . .
 RUN npm run build
+RUN npm prune --production
 EXPOSE 3011
 CMD ["node", "dist/index.js"]

@@ -1,12 +1,10 @@
 FROM mcr.microsoft.com/playwright:v1.40.0-focal
-
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm install
 RUN npx playwright install chromium --with-deps
-
 COPY . .
 RUN npm run build
-
+RUN npm prune --production
 EXPOSE 3010
 CMD ["node", "dist/index.js"]
